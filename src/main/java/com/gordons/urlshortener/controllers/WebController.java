@@ -22,7 +22,7 @@ public class WebController {
     this.urlService = urlService;
   }
 
-  @GetMapping("/")
+  @GetMapping("/index")
   public String renderMainpage() {
     return "index";
   }
