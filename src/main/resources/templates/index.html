@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>URL shortener</title>
+</head>
+<body>
+<a href="/">
+    <h1>URL shortener</h1>
+</a>
+<form action="/shorten" method="post">
+    <input type="text" name="pastedURL" required placeholder="paste long URL here" size="100">
+    <input type="submit" value="Short!">
+</form>
+</body>
+</html>

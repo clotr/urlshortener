@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shortened URL</title>
+</head>
+<body>
+    <a href="/">
+    <h1>URL shortener</h1>
+    </a>
+    <h2>original URL:</h2>
+    <a th:text="${longURL}" th:href="${longURL}"></a>
+    <h2>short URL:</h2>
+    <input type="text" th:value="${shortURL}" id="url" size="30">
+    <button type="button" onclick="copyTo()">Copy to clipboard</button>
+</body>
+<script>
+function copyTo() {
+  const url = document.getElementById("url");
+  url.focus();
+  url.select();
+  document.execCommand('copy');
+}
+</script>
+</html>
