@@ -28,9 +28,9 @@
 <tbody>
 <tr th:each="urlData:${urlList}">
     <td style="text-align: center" th:text="${urlData.getLongURL()}"></td>
-    <td style="text-align: center" th:text="${urlData.getId()}"></td>
+    <td style="text-align: center" th:text="${urlData.getShortId()}"></td>
     <td style="text-align: center" th:text="${urlData.getDate()}"></td>
-    <td style="text-align: center"><a th:href="|/delete/${urlData.getId()}|">Delete</a></td>
+    <td style="text-align: center"><a th:href="|/delete/${urlData.getShortId()}|">Delete</a></td>
 </tr>
 </tbody>
 </table>

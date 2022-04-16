@@ -3,13 +3,17 @@ package com.gordons.urlshortener.repositories;
 
 import com.gordons.urlshortener.models.URLData;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface URLRepository {
-  String addURL(URLData urlData);
+@Repository
+public interface URLRepository extends CrudRepository<URLData, Long> {
+  URLData save(URLData urlData);
 
-  String findId(String id);
+  Optional<URLData> findByShortId(String id);
 
   List<URLData> findAll();
 
-  List<URLData> deleteId(String id);
+  void deleteByShortId(String id);
 }

@@ -18,12 +18,12 @@ public class URLServiceImpl implements URLService {
   }
 
   public String addURL(String url) {
-    return urlRepository.addURL(new URLData(url));
+    return urlRepository.save(new URLData(url)).getShortId();
   }
 
   @Override
   public String findId(String id) {
-    return urlRepository.findId(id);
+    return urlRepository.findByShortId(id).isPresent()? urlRepository.findByShortId(id).get().getLongURL() : "no matching result found";
   }
 
   @Override
@@ -33,6 +33,7 @@ public class URLServiceImpl implements URLService {
 
   @Override
   public List<URLData> deleteId(String id) {
-    return urlRepository.deleteId(id);
+    urlRepository.deleteByShortId(id);
+    return urlRepository.findAll();
   }
 }

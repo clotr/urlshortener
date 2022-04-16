@@ -4,11 +4,9 @@ import com.gordons.urlshortener.models.URLData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class URLRepositoryImpl
-    implements URLRepository {
+
+public class URLRepositoryImpl {
 
   private List<URLData> shortURLList;
 
@@ -16,29 +14,26 @@ public class URLRepositoryImpl
     shortURLList = new ArrayList<>();
   }
 
-  public String addURL(URLData urlData) {
+  public URLData save(URLData urlData) {
     shortURLList.add(urlData);
-    return urlData.getId().toString();
+    return urlData;
   }
 
-  @Override
-  public String findId(String id) {
-    String longURL;
+
+  public URLData findByShortId(String id) {
     List<URLData> result = shortURLList.stream()
-        .filter(x -> x.getId().equals(id))
+        .filter(x -> x.getShortId().equals(id))
         .collect(Collectors.toList());
-    longURL = result.get(0).getLongURL();
-    return longURL;
+    return result.get(0);
   }
 
-  @Override
+
   public List<URLData> findAll() {
     return shortURLList;
   }
 
-  @Override
-  public List<URLData> deleteId(String id) {
-    shortURLList.removeIf(x -> x.getId().equals(id));
+  public List<URLData> deleteByShortId(String id) {
+    shortURLList.removeIf(x -> x.getShortId().equals(id));
     return shortURLList;
   }
 }
