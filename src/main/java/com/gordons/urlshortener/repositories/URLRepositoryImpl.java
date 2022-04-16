@@ -30,4 +30,15 @@ public class URLRepositoryImpl
     longURL = result.get(0).getLongURL();
     return longURL;
   }
+
+  @Override
+  public List<URLData> findAll() {
+    return shortURLList;
+  }
+
+  @Override
+  public List<URLData> deleteId(String id) {
+    shortURLList.removeIf(x -> x.getId().equals(id));
+    return shortURLList;
+  }
 }

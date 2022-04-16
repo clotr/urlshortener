@@ -19,6 +19,11 @@
 <h2>short URL:</h2>
 <input type="text" th:value="${shortURL}" id="url" size="40">
 <button type="button" onclick="copyTo()">Copy to clipboard</button>
+<br>
+<a href="/history">
+    <h3>Show history</h3>
+</a>
+
 </body>
 <script>
 function copyTo() {

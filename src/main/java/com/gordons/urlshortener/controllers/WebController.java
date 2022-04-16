@@ -1,6 +1,8 @@
 package com.gordons.urlshortener.controllers;
 
+import com.gordons.urlshortener.models.URLData;
 import com.gordons.urlshortener.services.URLService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,12 @@ public class WebController {
     return "home";
   }
 
+  @GetMapping("/history")
+  public String renderHistorypage(Model model) {
+    model.addAttribute("urlList", urlService.findAll());
+    return "history";
+  }
+
   @PostMapping("/shorten")
   public String shortenURL(Model model, @RequestParam String pastedURL) {
     String shortURL = urlService.addURL(pastedURL);
@@ -50,6 +58,13 @@ public class WebController {
   public String searchID(@PathVariable String id, Model model) {
     String longURL = urlService.findId(id);
     return "redirect:"+longURL;
+  }
+
+  @GetMapping("/delete/{id}")
+  public String deleteID(@PathVariable String id, Model model) {
+    List<URLData> urlList = urlService.deleteId(id);
+    model.addAttribute("urlList", urlList);
+    return "history";
   }
 
 }
