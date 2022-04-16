@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-    <a href="/">
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br>
+<a href="/home">
     <h1>URL shortener</h1>
-    </a>
-    <h2>original URL:</h2>
-    <a th:text="${longURL}" th:href="${longURL}"></a>
-    <h2>short URL:</h2>
-    <input type="text" th:value="${shortURL}" id="url" size="40">
-    <button type="button" onclick="copyTo()">Copy to clipboard</button>
+</a>
+<h2>original URL:</h2>
+<a th:text="${longURL}" th:href="${longURL}"></a>
+<h2>short URL:</h2>
+<input type="text" th:value="${shortURL}" id="url" size="40">
+<button type="button" onclick="copyTo()">Copy to clipboard</button>
 </body>
 <script>
 function copyTo() {
@@ -22,5 +27,6 @@ function copyTo() {
   url.select();
   document.execCommand('copy');
 }
+
 </script>
 </html>

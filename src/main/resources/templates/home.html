@@ -6,10 +6,15 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<a href="/">
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br>
+<a href="/home">
     <h1>URL shortener</h1>
 </a>
-<form action="/shorten" method="post">
+<form th:action="'/shorten'" method="post">
     <div id="inputfield">
         <input type="url" name="pastedURL" required placeholder="paste long URL here" size="60">
     </div>

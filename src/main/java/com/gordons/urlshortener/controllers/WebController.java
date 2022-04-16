@@ -22,9 +22,19 @@ public class WebController {
     this.urlService = urlService;
   }
 
-  @GetMapping("/index")
+  @GetMapping("/login")
+  public String renderLoginpage() {
+    return "login";
+  }
+
+  @GetMapping("/")
+  public String renderHomepage() {
+    return "home";
+  }
+
+  @GetMapping("/home")
   public String renderMainpage() {
-    return "index";
+    return "home";
   }
 
   @PostMapping("/shorten")
